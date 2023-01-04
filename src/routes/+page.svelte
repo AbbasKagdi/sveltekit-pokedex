@@ -6,14 +6,14 @@
     let filteredPokemon = []
 
     // react to the search term typed in the searchbar
-    $:{
+    $: {
         console.log(searchTerm)
         if(searchTerm){
-            // search the pokemon
-            // filteredPokemon = pokemon.filter(pokeman => pokemon.name.includes(searchTerm))
+            // search the pokemon in lowercase
+            filteredPokemon = $pokemon.filter(pokeman => pokeman.name.toLowerCase().includes(searchTerm.toLowerCase()))
         }
         else{
-            // filteredPokemon = [... $pokemon]
+            filteredPokemon = [... $pokemon]
         }
     }
 </script>
@@ -28,8 +28,8 @@
 
 <!-- passing filtered prop to single pokemon card -->
 <div class="py-4 grid gap-4 md:grid-cols-2 grid-cols-1">
-    <!-- {#each $filteredPokemon as poke} -->
-    {#each $pokemon as poke}
+    {#each filteredPokemon as poke}
+    <!-- {#each $pokemon as poke} -->
         <SingleCard pokeman={poke} />
     {/each}
 </div>
